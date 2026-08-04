@@ -1,0 +1,3 @@
+# Shared configurations
+seed: 42
+plot_style: "seaborn-v0_8-paper"

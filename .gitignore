@@ -1,0 +1,29 @@
+# Data and heavy storage boundaries
+/input/
+/data/
+
+# All the development code
+/notebooks/
+
+# Environments and heavy distributions
+.conda/
+env/
+venv/
+.env
+*.pyc
+__pycache__/
+
+# IDEs and OS overhead
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.idea/
+
+# .tex build files
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
