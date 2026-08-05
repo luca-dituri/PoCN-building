@@ -16,7 +16,7 @@ def generate_gaussian_network(N, mean_k, std_k, N_b):
     seq = make_even(seq)
     
     G = nx.configuration_model(seq, create_using=nx.Graph)
-    G.remove_edges_from(nx.selfloop_edges(G)) # Simple graph usually preferred
+    G.remove_edges_from(nx.selfloop_edges(G))
     
     _assign_boundary_nodes(G, N_b)
     return G

@@ -1,6 +1,6 @@
-PWD c:\Users\lcdit\Desktop\Uni\Magistrale\2_Semestre\Complex Networks\Projects\Theoretical Project\latex
+PWD c:\Users\lcdit\Desktop\Uni\Magistrale\2_Semestre\Complex Networks\Projects\latex
 INPUT C:\Users\lcdit\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\lcdit\Desktop\Uni\Magistrale\2_Semestre\Complex Networks\Projects\Theoretical Project\latex\main.tex
+INPUT c:\Users\lcdit\Desktop\Uni\Magistrale\2_Semestre\Complex Networks\Projects\latex\main.tex
 OUTPUT main.log
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
@@ -323,6 +323,8 @@ INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\stackengine\stacken
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\listofitems\listofitems.sty
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\listofitems\listofitems.sty
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\generic\listofitems\listofitems.tex
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\tasks\tasks.sty
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\tasks\tasks.sty
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xtemplate\xtemplate.sty
@@ -429,6 +431,10 @@ INPUT .\main.toc
 INPUT .\main.toc
 INPUT main.toc
 OUTPUT main.toc
+INPUT .\main.lof
+INPUT .\main.lof
+INPUT main.lof
+OUTPUT main.lof
 INPUT .\sections\task1.tex
 INPUT .\sections\task1.tex
 INPUT sections\task1.tex
@@ -450,18 +456,40 @@ INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmr12.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr12.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
+INPUT .\figures\task_15\task_15_part1_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part1_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part1_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part1_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part1_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part1_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part1_sizes.pdf
+INPUT .\figures\task_15\task_15_part1_sizes.pdf
+INPUT .\figures\task_15\task_15_part1_sizes.pdf
+INPUT .\figures\task_15\task_15_part1_sizes.pdf
+INPUT .\figures\task_15\task_15_part1_sizes.pdf
+INPUT .\figures\task_15\task_15_part1_sizes.pdf
+INPUT .\figures\task_15\task_15_part2_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part2_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part2_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part2_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part2_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part2_lifetimes.pdf
+INPUT .\figures\task_15\task_15_part2_sizes.pdf
+INPUT .\figures\task_15\task_15_part2_sizes.pdf
+INPUT .\figures\task_15\task_15_part2_sizes.pdf
+INPUT .\figures\task_15\task_15_part2_sizes.pdf
+INPUT .\figures\task_15\task_15_part2_sizes.pdf
+INPUT .\figures\task_15\task_15_part2_sizes.pdf
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbxi10.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx10.tfm
 INPUT .\sections\task2.tex
 INPUT .\sections\task2.tex
 INPUT sections\task2.tex
-INPUT .\sections\task3.tex
-INPUT .\sections\task3.tex
-INPUT sections\task3.tex
-INPUT .\sections\task4.tex
-INPUT .\sections\task4.tex
-INPUT sections\task4.tex
 INPUT .\main.bbl
 INPUT .\main.bbl
 INPUT main.bbl
@@ -480,6 +508,10 @@ INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx8.p
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx8.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbxi10.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbxi10.pfb
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi12.pfb
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi12.pfb
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
@@ -490,5 +522,9 @@ INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pf
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri12.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri12.pfb
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy8.pfb
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy8.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmtt12.pfb
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmtt12.pfb

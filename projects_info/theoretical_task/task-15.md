@@ -14,7 +14,7 @@ In this work we will use different types of networks, and observe the emergence 
 
 Analysis:
 
-**Paper:** [Catastrophic Cascade of Failures in Interdependent Networks (Buldyrev et al. 2010)](./theoretical_task/jpsj.64.327.pdf)
+**Paper:** [Sandpile Dynamics on Random Graphs (Eric Bonabeau, 1994)](./jpsj.64.327.pdf)
 
 Create networks with edges distribution $P(K)$:
 
@@ -33,8 +33,6 @@ Create networks with edges distribution $P(K)$:
 - $P(k)\propto k^{-\gamma}$
 
 with $\gamma\in$ {$2.01,2.2,2.4,2.6,2.8,3.0,5.0,\infty$}, $N = 10^6$ and <$k$>$=4$. 
-
-We start form N indexed nodes, and connect them using $w_i=i^{-\alpha}$ where $\gamma = 1+ \alpha^{-1}$, sampling two nodes i,j from the distribution $p(i)=\frac{w_i}{\sum_k w_k}$ and adding an edge between them if it doesn't exist. Repeat this until the mean degree of the network is $4$.
 
 Run the sandpile dynamics with threshold $k(i)$ and a probability of losing a grain $f=10^{-4}$, evaluate distribution of avalanche sizes and the lifetime distributions, compare them with the values expected from multiplicative branching processes theory. 
 Plot in loglog both distributions, and compare them to the expected values for the exponents in the thermodynamics limit.

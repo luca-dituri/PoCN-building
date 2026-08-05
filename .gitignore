@@ -27,3 +27,6 @@ __pycache__/
 *.bbl
 *.blg
 *.synctex.gz
+
+# Generated PDF-to-Markdown caches
+*.pdf.md

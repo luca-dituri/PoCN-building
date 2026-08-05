@@ -1,5 +1,5 @@
 # Configuration for Task 15 (Theoretical)
-part1:  #
+part1:  
   N: 100000
   N_b: 100 #1/1000
   gaussian:

@@ -33,7 +33,7 @@ def plot_part1(data_dir, fig_dir):
         
         ax.set_xlabel('Avalanche Size $A$')
         ax.set_ylabel('Probability $P(A)$')
-        ax.set_title('Part 1: Avalanche Size Distribution')
+        ax.set_title('Avalanche Size Distribution')
         ax.legend()
         ax.grid(True, which="both", ls="--", alpha=0.3)
         fig.tight_layout()
@@ -59,7 +59,7 @@ def plot_part1(data_dir, fig_dir):
         
         ax.set_xlabel('Lifetime $T$')
         ax.set_ylabel('Probability $P(T)$')
-        ax.set_title('Part 1: Avalanche Lifetime Distribution')
+        ax.set_title('Avalanche Lifetime Distribution')
         ax.legend()
         ax.grid(True, which="both", ls="--", alpha=0.3)
         fig.tight_layout()
@@ -93,7 +93,7 @@ def plot_part2(config, data_dir, fig_dir):
         
         ax.set_xlabel('Avalanche Size $A$')
         ax.set_ylabel('Probability $P(A)$')
-        ax.set_title('Part 2: Avalanche Size Distribution (Scale-Free)')
+        ax.set_title('Avalanche Size Distribution ($\gamma$ Scale-Free)')
         ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         ax.grid(True, which="both", ls="--", alpha=0.3)
         fig.tight_layout()
@@ -121,7 +121,7 @@ def plot_part2(config, data_dir, fig_dir):
         
         ax.set_xlabel('Lifetime $T$')
         ax.set_ylabel('Probability $P(T)$')
-        ax.set_title('Part 2: Avalanche Lifetime Distribution (Scale-Free)')
+        ax.set_title('Avalanche Lifetime Distribution ($\gamma$ Scale-Free)')
         ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
         ax.grid(True, which="both", ls="--", alpha=0.3)
         fig.tight_layout()

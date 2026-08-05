@@ -1,6 +1,6 @@
-\chapter{Task title...}
+\chapter{Task \#15: Cascade Failures - SOC model }
 
-\resp{Author name(s)...}
+%\resp{Author name(s)...}
 
 \emph{
 Structure as\footnote{Remove this part from the report}:
@@ -12,18 +12,50 @@ Structure as\footnote{Remove this part from the report}:
 A total of 3 pages + 5 supplementary pages per task
 }
 
-\section{A section...}
- 
-Reference examples: book~\cite{barrat2008dynamical}, article~\cite{de2013mathematical}, website~\cite{weforumProtectingCritical}
+\section{Introduction:}
+
+\textbf{Self-Organized Criticality} (SOC) is an approach adopted to explain the emergence of power-law distributions in natural phenomena. 
+In physics, criticality is associated to systems near phase transitions, that live between two distinct regimes, 
+and at this critical point, the emergence of power-laws occurs. 
+
+\noindent In SOC, systems are believed to organize themselves naturally into critical states, following internal feedback mechanisms and without external invervention.
+
+\noindent In this report, we analyze the SOC behavior associated to the Sandpile Model.
+
+\noindent In the \textbf{Sandpile Model}, we consider networks with an associated load variable, that accounts for any sort of stress that can be observed in real applications (such as power grids). 
+A given node in the network stays functional, as long as its load doesn't go above a given threshold: its \textit{capacity}. 
+When the capacity of a node is overcame, we have a failure in the node, and its load gets redistributed according to some chosen rules.
+
+\noindent We will use different types of networks, and observe the emergence of power-law distribution for the size $A$ of the avalanches and their lifetime $T$.
+Particularly, we will consider different degree distributions:
+\begin{itemize}
+    \item Gaussian: $k \sim \mathcal{N}(\mu=20,\sigma=8)$
+    \item Uniform: $k\sim\text{Uniform}(k_{min}=4,k_{max}=36)$
+    \item Power Law (Scale Free): $k\sim k^{-\gamma}$ with $\gamma\in\{2.01,2.2,2.4,2.6,2.8,3.0,5.0\}$
+\end{itemize}
+
+Every network had $10^6$ nodes, and the reported results are the averages of $30$ iterations.
+
 
 \section{Another section...}
-
-\lipsum[2-4]
-
-\lipsum[2-4]
-\lipsum[2-4]
-\lipsum[2-4]
-\lipsum[2-4]
-\lipsum[2-4]
-
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part1_lifetimes.pdf}
+    \caption{Avalanche size and lifetime distributions for the SOC sandpile model.}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part1_sizes.pdf}
+    \caption{Avalanche size and lifetime distributions for the SOC sandpile model.}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part2_lifetimes.pdf}
+    \caption{Avalanche size and lifetime distributions for the SOC sandpile model.}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part2_sizes.pdf}
+    \caption{Avalanche size and lifetime distributions for the SOC sandpile model.}
+\end{figure}
 \newpage
