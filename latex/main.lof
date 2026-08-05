@@ -1,8 +1,6 @@
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Avalanche size and lifetime distributions for the SOC sandpile model.}}{2}{figure.1.1}%
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Avalanche size and lifetime distributions for the SOC sandpile model.}}{3}{figure.1.2}%
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Avalanche size and lifetime distributions for the SOC sandpile model.}}{4}{figure.1.3}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Avalanche size and lifetime distributions for the SOC sandpile model.}}{4}{figure.1.4}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Avalanche size ($s$) and lifetime ($t$) distributions for the SOC sandpile model on Gaussian and Uniform networks.}}{2}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Avalanche size ($s$) and lifetime ($t$) distributions for the SOC sandpile model on Scale-Free networks.}}{3}{figure.1.2}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

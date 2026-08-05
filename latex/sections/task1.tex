@@ -1,61 +1,127 @@
 \chapter{Task \#15: Cascade Failures - SOC model }
-
-%\resp{Author name(s)...}
-
-\emph{
-Structure as\footnote{Remove this part from the report}:
-\begin{itemize}
-\item A short (max 1 page) explanation of the task, including references. Include mathematical concepts.
-\item Max 2 pages for the whole task (including figures)
-\item It is possible to use appendices for supplementary material, at the end of the report. Max 5 pages per task
-\end{itemize}
-A total of 3 pages + 5 supplementary pages per task
-}
-
 \section{Introduction:}
 
 \textbf{Self-Organized Criticality} (SOC) is an approach adopted to explain the emergence of power-law distributions in natural phenomena. 
 In physics, criticality is associated to systems near phase transitions, that live between two distinct regimes, 
-and at this critical point, the emergence of power-laws occurs. 
-
+and at this critical point, the emergence of power-laws occurs.\\
 \noindent In SOC, systems are believed to organize themselves naturally into critical states, following internal feedback mechanisms and without external invervention.
-
+\\
 \noindent In this report, we analyze the SOC behavior associated to the Sandpile Model.
 
-\noindent In the \textbf{Sandpile Model}, we consider networks with an associated load variable, that accounts for any sort of stress that can be observed in real applications (such as power grids). 
+\noindent In the \textbf{Sandpile Model}, we consider networks with an associated load variable, that accounts for any sort of stress that can be observed in real applications. 
 A given node in the network stays functional, as long as its load doesn't go above a given threshold: its \textit{capacity}. 
-When the capacity of a node is overcame, we have a failure in the node, and its load gets redistributed according to some chosen rules.
+Load is assigned randomly to nodes in the network, and when the capacity of a node is overcame, we have a failure in the node, and its load is redistributed according to some chosen rules. 
+A dissipative factor is added to load tranfers, to avoid excessive accumulation of load across the network.
 
-\noindent We will use different types of networks, and observe the emergence of power-law distribution for the size $A$ of the avalanches and their lifetime $T$.
-Particularly, we will consider different degree distributions:
-\begin{itemize}
+\noindent We use single-layer networks\footnote{ Following the works \cite{doi:10.1143/JPSJ.64.327} and \cite{PhysRevLett.91.148701}.} and two-layer networks\footnote{ Following \cite{doi:10.1073/pnas.1110586109}.}, where the first ones are used to examine the basic properties of cascade failures, 
+and the second offers a more robust study of interconnected systems, such as real power grids.
+
+\noindent To analyze the cascades, we assume a tree structure of each avalanche, and using the theory of multiplicative branching processes, we find the analytical predictions for the distributions of the size $s$ of the avalanches and their lifetime $t$
+\\
+\noindent For the systems studied in this work, the results for the size ($s$) and lifetime ($t$) distributions are:
+
+\begin{gather}
+    p(s)\sim s^{-\tau}
+    \\
+    l(t)\sim t^{-z}
+\end{gather}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lc|c|c}
+        \toprule
+        \textbf{Network} && $\tau$ & $z$ \\
+        \midrule
+        Random && $3/2$ & $2$ \\
+        \hline
+        & $2<\gamma<3$ & $\frac{\gamma}{\gamma-1}$ & $\frac{\gamma-1}{\gamma-2}$ \\
+        Scale-free ($\gamma$) & $\gamma=3$& $3/2^*$ & $2^*$\\
+        & $\gamma\ge3$ & $3/2$ & $2$\\
+        \hline
+        Two-layer\tablefootnote{Sparsely interconnected network, where each layer $i$ has nodes with fixed degree $k_i$.} & - & - \\
+        \bottomrule
+    \end{tabular}
+    \caption{Analytical predictions for avalanche distributions. \\
+    $^*$with logarithmic corrections.}
+    \label{tab:analytical_res}
+\end{table}
+
+
+
+
+\section{Analysis} 
+
+\noindent In this work, we first consider the Sandpile Model with simple degree distributions, in particular, following the works \cite{doi:10.1143/JPSJ.64.327} and \cite{PhysRevLett.91.148701}, we use the distributions:
+\begin{itemize}  
     \item Gaussian: $k \sim \mathcal{N}(\mu=20,\sigma=8)$
     \item Uniform: $k\sim\text{Uniform}(k_{min}=4,k_{max}=36)$
     \item Power Law (Scale Free): $k\sim k^{-\gamma}$ with $\gamma\in\{2.01,2.2,2.4,2.6,2.8,3.0,5.0\}$
 \end{itemize}
 
-Every network had $10^6$ nodes, and the reported results are the averages of $30$ iterations.
+\noindent Every network includes $N=10^5$ nodes, and the results are the averages of $30$ different iterations.
+The dissipation is carried by dissipative nodes ($0.1\%$ of the total) in the random networks, which transfer load outside of the network once toppled; we use a dissipation probability $f=0.001$ on the scale free network, 
+which is the probability of every load transfer to not happen, dissipating the load.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part1.pdf}
+    \caption{Avalanche size ($s$) and lifetime ($t$) distributions for the SOC sandpile model on Gaussian and Uniform networks.}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part2.pdf}
+    \caption{Avalanche size ($s$) and lifetime ($t$) distributions for the SOC sandpile model on Scale-Free networks.}
+\end{figure}
 
-\section{Another section...}
-\begin{figure}[htbp]
+\noindent From the log-binned distributions we estimate the exponents of the scaling regimes, and compare them with the analytical predictions of multiplicative branching processes. The fits are performed with weighted least squares on the \emph{plateau} of each distribution: a window of fixed logarithmic span is slid across the data and the straightest portion (minimum local-slope variance) is selected, after excluding the small-size cut-off and the noisy tail of the distributions. The resulting scaling ranges are reported in Table~\ref{tab:fit_ranges}.
+
+\begin{table}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part1_lifetimes.pdf}
-    \caption{Avalanche size and lifetime distributions for the SOC sandpile model.}
-\end{figure}
-\begin{figure}[htbp]
+    \begin{tabular}{lc|cc|cc}
+        \toprule
+        \textbf{Network} && \multicolumn{2}{c|}{$\tau$} & \multicolumn{2}{c}{$z$} \\
+        & & theory & fit & theory & fit \\
+        \midrule
+        Gaussian && 1.50 & 1.55 $\pm$ 0.02 & 2.00 & 1.95 $\pm$ 0.01 \\
+        Uniform && 1.50 & 1.57 $\pm$ 0.02 & 2.00 & 1.94 $\pm$ 0.01 \\
+        $\gamma = 2.01$ && 1.99 & 1.74 $\pm$ 0.03 & 101.00 & 5.58 $\pm$ 0.21 \\
+        $\gamma = 2.2$ && 1.83 & 1.77 $\pm$ 0.01 & 6.00 & 3.91 $\pm$ 0.14 \\
+        $\gamma = 2.4$ && 1.71 & 1.78 $\pm$ 0.02 & 3.50 & 3.48 $\pm$ 0.03 \\
+        $\gamma = 2.6$ && 1.62 & 1.69 $\pm$ 0.02 & 2.67 & 2.98 $\pm$ 0.01 \\
+        $\gamma = 2.8$ && 1.56 & 1.72 $\pm$ 0.01 & 2.25 & 2.71 $\pm$ 0.01 \\
+        $\gamma = 3.0$ && 1.50 & 1.69 $\pm$ 0.01 & 2.00 & 2.51 $\pm$ 0.01 \\
+        $\gamma = 5.0$ && 1.50 & 1.66 $\pm$ 0.00 & 2.00 & 2.01 $\pm$ 0.01 \\
+        $\gamma = \infty$ && 1.50 & 1.67 $\pm$ 0.00 & 2.00 & 2.10 $\pm$ 0.01 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Fitted avalanche-size ($\tau$) and lifetime ($z$) exponents vs multiplicative branching-process predictions.
+    Fits are performed on the plateau of each log-binned distribution; the corresponding scaling ranges are listed in Table~\ref{tab:fit_ranges}.}
+    \label{tab:fitted_exponents}
+\end{table}
+
+\begin{table}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part1_sizes.pdf}
-    \caption{Avalanche size and lifetime distributions for the SOC sandpile model.}
-\end{figure}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part2_lifetimes.pdf}
-    \caption{Avalanche size and lifetime distributions for the SOC sandpile model.}
-\end{figure}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\textwidth]{./figures/task_15/task_15_part2_sizes.pdf}
-    \caption{Avalanche size and lifetime distributions for the SOC sandpile model.}
-\end{figure}
+    \begin{tabular}{lc|cc|cc}
+        \toprule
+        \textbf{Network} && \multicolumn{2}{c|}{$s$} & \multicolumn{2}{c}{$t$} \\
+        & & min & max & min & max \\
+        \midrule
+        Gaussian && 27 & 1e+02 & 5 & 3e+01 \\
+        Uniform && 21 & 1e+02 & 4 & 3e+01 \\
+        $\gamma = 2.01$ && 77 & 4e+02 & 54 & 1e+02 \\
+        $\gamma = 2.2$ && 173 & 9e+02 & 4 & 3e+01 \\
+        $\gamma = 2.4$ && 132 & 7e+02 & 6 & 4e+01 \\
+        $\gamma = 2.6$ && 259 & 2e+03 & 8 & 5e+01 \\
+        $\gamma = 2.8$ && 87 & 5e+02 & 10 & 6e+01 \\
+        $\gamma = 3.0$ && 69 & 4e+02 & 10 & 6e+01 \\
+        $\gamma = 5.0$ && 16 & 9e+01 & 29 & 2e+02 \\
+        $\gamma = \infty$ && 10 & 5e+01 & 9 & 6e+01 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Scaling ranges used for the exponent fits of Table~\ref{tab:fitted_exponents}.}
+    \label{tab:fit_ranges}
+\end{table}
+
+\noindent The fitted exponents are in good agreement with the multiplicative branching process predictions: the lifetime exponent matches $z = 2$ within statistical error on the random networks, and the size exponent is only slightly above the mean-field value $\tau = 3/2$ (a finite-size effect already visible in the plateau of the local slopes).
+For the scale-free networks the observed exponents decrease with $\gamma$ as predicted, although for $\gamma \lesssim 2.6$ the fitted $\tau$ and $z$ remain below the theoretical values; for $\gamma$ close to $2$ the theoretical lifetime exponent diverges as $z = (\gamma-1)/(\gamma-2)$, which is not attainable in finite networks, so the comparison there is indicative rather than quantitative.
 \newpage

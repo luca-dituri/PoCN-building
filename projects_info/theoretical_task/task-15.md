@@ -14,7 +14,6 @@ In this work we will use different types of networks, and observe the emergence 
 
 Analysis:
 
-**Paper:** [Sandpile Dynamics on Random Graphs (Eric Bonabeau, 1994)](./jpsj.64.327.pdf)
 
 Create networks with edges distribution $P(K)$:
 
@@ -26,7 +25,6 @@ Use $N = 20000$ total nodes, and $N_b =200$ ($1\%$) boundary nodes ($bn$), where
 Run the sandpile dynamics with threshold $k(i)$, evaluate distribution of avalanche sizes and the lifetime distributions, compare them with the values expected from multiplicative branching processes theory. 
 Plot in loglog both distributions, and compare them to the expected values for the exponents in the thermodynamics limit.
 
-- **Paper:** [Cascading Failures in Complex Networks (Motter & Lai 2002)](./theoretical_task/PhysRevLett.91.148701.pdf)
 
 Create networks with edges distribution $P(K)$:
 
