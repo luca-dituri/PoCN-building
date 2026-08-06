@@ -84,6 +84,109 @@ def run_sandpile_numba(adj_indptr, adj_indices, thresholds, f, num_drops):
             
     return avalanche_sizes, lifetimes
 
+@njit
+def run_sandpile_split_numba(adj_indptr, adj_indices, thresholds, network_ids, f, num_drops):
+    N = len(thresholds)
+    loads = np.zeros(N, dtype=np.int32)
+    for i in range(N):
+        if thresholds[i] > 0:
+            loads[i] = np.random.randint(0, thresholds[i])
+
+    origins = np.zeros(num_drops, dtype=np.int32)
+    ta_all = np.zeros(num_drops, dtype=np.int64)
+    tb_all = np.zeros(num_drops, dtype=np.int64)
+
+    for drop in range(num_drops):
+        target = np.random.randint(0, N)
+        loads[target] += 1
+
+        if loads[target] >= thresholds[target]:
+            origins[drop] = network_ids[target]
+
+            active_nodes = np.zeros(N, dtype=np.int32)
+            active_count = 0
+
+            in_queue = np.zeros(N, dtype=np.bool_)
+            in_queue[target] = True
+
+            ta = 0
+            tb = 0
+
+            active_nodes[active_count] = target
+            active_count += 1
+
+            while active_count > 0:
+                next_active = np.zeros(N, dtype=np.int32)
+                next_count = 0
+
+                for i in range(active_count):
+                    node = active_nodes[i]
+                    if loads[node] >= thresholds[node]:
+                        n_topples = loads[node] // thresholds[node]
+                        loads[node] = loads[node] % thresholds[node]
+
+                        if network_ids[node] == 0:
+                            ta += n_topples
+                        else:
+                            tb += n_topples
+
+                        start = adj_indptr[node]
+                        end = adj_indptr[node + 1]
+
+                        for _ in range(n_topples):
+                            for idx in range(start, end):
+                                neighbor = adj_indices[idx]
+                                if f > 0.0:
+                                    if np.random.random() >= f:
+                                        loads[neighbor] += 1
+                                        if loads[neighbor] >= thresholds[neighbor] and not in_queue[neighbor]:
+                                            next_active[next_count] = neighbor
+                                            next_count += 1
+                                            in_queue[neighbor] = True
+                                else:
+                                    loads[neighbor] += 1
+                                    if loads[neighbor] >= thresholds[neighbor] and not in_queue[neighbor]:
+                                        next_active[next_count] = neighbor
+                                        next_count += 1
+                                        in_queue[neighbor] = True
+
+                for i in range(next_count):
+                    in_queue[next_active[i]] = False
+
+                for i in range(next_count):
+                    active_nodes[i] = next_active[i]
+                active_count = next_count
+
+            ta_all[drop] = ta
+            tb_all[drop] = tb
+
+    return origins, ta_all, tb_all
+
+def simulate_sandpile_split(G, network_ids, num_drops=2000000, f=0.0, burn_in_frac=0.2):
+    """Run the sandpile on an interconnected two-network graph.
+
+    Returns per-drop arrays (origin, ta, tb): origin is the network (0 or 1)
+    of the node receiving the dropped grain, ta/tb the number of topplings in
+    each network caused by that avalanche. First burn_in_frac of drops are
+    discarded as transient.
+    """
+    adj = nx.to_scipy_sparse_array(G, format='csr')
+    adj_indptr = adj.indptr
+    adj_indices = adj.indices
+
+    N = G.number_of_nodes()
+    thresholds = np.zeros(N, dtype=np.int32)
+    for n in G.nodes():
+        thresholds[n] = G.degree(n)
+        if thresholds[n] == 0:
+            thresholds[n] = 1
+
+    origins, ta, tb = run_sandpile_split_numba(
+        adj_indptr, adj_indices, thresholds, network_ids, f, num_drops)
+
+    burn_in = int(burn_in_frac * num_drops)
+    return origins[burn_in:], ta[burn_in:], tb[burn_in:]
+
 def simulate_sandpile(G, num_drops=100000, f=0.0):
     # Convert graph to CSR format for Numba
     adj = nx.to_scipy_sparse_array(G, format='csr')

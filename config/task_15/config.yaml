@@ -16,3 +16,15 @@ part2:
   gammas: [2.01, 2.2, 2.4, 2.6, 2.8, 3.0, 5.0, 100.0] # 100.0 acts as infinity
   f: 0.001 #1/1000
   realizations: 30
+
+part3:
+  N: 2000 # nodes per network
+  degree: 3
+  f: 0.01
+  grains: 2000000 # kept after 20% burn-in (drop 2.5e6)
+  realizations: 30
+  big_threshold_frac: 0.5 # "big" = ta > 0.5 * N = 1000
+  top_k: 10000 # rank-size insets
+  p_values: [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.075, 0.1, 0.2, 0.5]
+  inset_p_values: [0.001, 0.01, 0.1]
+  fig6_windows: [[1, 51], [100, 150], [650, 700], [850, 900]]

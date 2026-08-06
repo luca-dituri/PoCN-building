@@ -1,6 +1,18 @@
+import yaml
 import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
+
+# Shared theme constants (applied by setup_plot_style)
+FONT_SIZE = 15
+LEGEND_SIZE = 11
+TITLE_SIZE = 13
+
+def _default_style_name():
+    base_dir = Path(__file__).parent.parent.parent
+    with open(base_dir / "config" / "shared.yaml", "r") as f:
+        config = yaml.safe_load(f)
+    return config.get("plot_style", "seaborn-v0_8-paper")
 
 def get_figure_dir(task_name="task_15"):
     base_dir = Path(__file__).parent.parent.parent
@@ -8,11 +20,19 @@ def get_figure_dir(task_name="task_15"):
     fig_dir.mkdir(parents=True, exist_ok=True)
     return fig_dir
 
-def setup_plot_style():
+def setup_plot_style(style_name=None):
+    style = style_name or _default_style_name()
     try:
-        plt.style.use('seaborn-v0_8-paper')
+        plt.style.use(style)
     except:
-        pass # fallback to default
+        pass  # fallback to default
+    plt.rcParams.update({
+        'axes.labelsize': FONT_SIZE,
+        'xtick.labelsize': FONT_SIZE - 3,
+        'ytick.labelsize': FONT_SIZE - 3,
+        'legend.fontsize': LEGEND_SIZE,
+        'axes.titlesize': TITLE_SIZE,
+    })
 
 def get_log_binned_distribution(runs_data, num_bins=50):
     if not runs_data:

@@ -46,6 +46,42 @@ def _assign_boundary_nodes(G, N_b):
             G.nodes[bn]['is_boundary'] = True
             G.nodes[bn]['n_dissipative'] = n_i
 
+def generate_random_regular_interconnected(N, z, p):
+    """Two random z-regular graphs coupled by Bernoulli interconnections.
+
+    Returns (G, network_ids) where G is the combined graph and network_ids is
+    an int array (0 = network a, 1 = network b) parallel to G's node order.
+    Each node independently receives one external edge stub with probability p
+    (else none); the two stub sets are matched uniformly at random, truncated
+    to the smaller count so the external degrees of a and b are equal.
+    """
+    G_a = nx.random_regular_graph(z, N)
+    G_b = nx.random_regular_graph(z, N)
+    G = nx.Graph()
+    G.add_nodes_from(G_a.nodes)
+    G.add_edges_from(G_a.edges)
+    offset_b = N
+    G.add_nodes_from([offset_b + n for n in G_b.nodes])
+    G.add_edges_from([(offset_b + u, offset_b + v) for u, v in G_b.edges])
+
+    stubs_a = [n for n in range(N) if np.random.random() < p]
+    stubs_b = [offset_b + n for n in range(N) if np.random.random() < p]
+    n_pairs = min(len(stubs_a), len(stubs_b))
+    if n_pairs > 0:
+        rng_a = np.random.choice(stubs_a, size=n_pairs, replace=False)
+        rng_b = np.random.choice(stubs_b, size=n_pairs, replace=False)
+        G.add_edges_from(zip(rng_a, rng_b))
+
+    network_ids = np.zeros(2 * N, dtype=np.int32)
+    network_ids[offset_b:] = 1
+
+    for n in G.nodes():
+        G.nodes[n]['is_boundary'] = False
+        G.nodes[n]['n_dissipative'] = 0
+
+    return G, network_ids
+
+
 def generate_scale_free_network(N, mean_k, gamma):
     if gamma >= 100.0: # Approximation for infinity
         # When gamma goes to infinity, alpha goes to 0 -> weights are uniform -> ER graph

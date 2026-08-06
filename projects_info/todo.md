@@ -1,4 +1,0 @@
-- [x] Change the variables in the plots from A, T to s, t
-- [x] Bigger text on the images, I want to have both s and t distributions in a .tex figure space in a single row
-- [x] in the pt.2 imgs, only one needs the total label, the other needs only the reference line, inside the plot space
-- the plot of the scale free network need only one complete legend indicating the whole gamma color code. the other plot only needs the predicted slope in the legend. Put the legend outside the figure, on the right of the two plots

@@ -9,7 +9,8 @@ academic project with two independent tasks:
 
 - **Task 15 (Theoretical):** Sandpile-model cascading failures across synthetic
   topologies (Gaussian, Uniform, Scale-Free) compared with multiplicative
-  branching-process predictions. This task is the active development focus.
+  branching-process predictions, plus interconnected (two-layer) R(z)-B(p)-R(z)
+  networks following Brummitt et al. This task is the active development focus.
 - **Task 47 (Data):** Spatial covariance and Landau-Ginzburg models on empirical
   spatial networks (GridKit). **Not started** — leave its folders untouched
   unless explicitly asked.
@@ -24,10 +25,6 @@ reference PDFs in `projects_info/theoretical_task/`.
   pandas, networkx, numba, tqdm, pyyaml).
 - Activate from bash: `conda activate complex-networks-env`
   (`conda init bash` already run; new shells load it via `~/.bash_profile`).
-- PATH-independent fallback — run any script through the wrapper:
-  `./tools/run.sh <script.py> [args...]` (calls the env interpreter by
-  absolute path). Use this in automation; plain `python` may resolve to a
-  Windows Store stub.
 - No standalone test suite and no linter configured. Verify by executing the
   relevant `run_*`/`plot_*` scripts and re-compiling the report.
 
@@ -37,17 +34,18 @@ All commands from the repository root unless noted.
 
 ```bash
 # Task 15 simulations (parallel realizations -> data/task_15/*.npz)
-./tools/run.sh code/task_15/run_part1.py
-./tools/run.sh code/task_15/run_part2.py
+python code/task_15/run_part1.py
+python code/task_15/run_part2.py
+python code/task_15/run_part3.py   # R(3)-B(p)-R(3) interconnected networks
 
-# Plots (log-binned distributions -> latex/figures/task_15/)
-./tools/run.sh code/task_15/plot_results.py
+# Plots (all parts + Brummitt Figs 4-6 -> latex/figures/task_15/)
+python code/task_15/plot_results.py
 
 # Exponent fitting on existing binned data (-> data/task_15/fits.csv, tables)
-./tools/run.sh code/task_15/fit_exponents.py
+python code/task_15/fit_exponents.py
 
 # Sensitivity of the fitted exponents to the fitting window (--sweep)
-./tools/run.sh code/task_15/fit_exponents.py --sweep
+python code/task_15/fit_exponents.py --sweep
 
 # Report
 cd latex && latexmk -pdf main.tex
@@ -63,7 +61,11 @@ hardcode values in scripts.
   (`task_15/`, `task_47/`). Top-level folders: `code/`, `config/`, `data/`,
   `input/`, `latex/`, `projects_info/`.
 - `code/common/` holds shared helpers: `utils.py` (`load_config`, `set_seed`),
-  `plot_utils.py` (plot style, `get_log_binned_distribution`).
+  `plot_utils.py` (shared theme via `setup_plot_style` — reads `plot_style` from
+  `config/shared.yaml`, standard font sizes, `get_figure_dir`,
+  `get_log_binned_distribution`). All plot scripts call `setup_plot_style` and
+  import font-size constants from here so every figure shares one consistent
+  style; do not set per-script rcParams.
 - Scripts add the repo root to `sys.path` (`sys.path.insert(0, base_dir/'code')`)
   and import as `common.*` / `task_15.*`.
 - Fixed seeds come from `config/shared.yaml`; per-realization seeds are derived
@@ -79,7 +81,23 @@ hardcode values in scripts.
 - Figures go to `latex/figures/task_15/`; report sections in
   `latex/sections/` (`task1.tex` = task 15, `task2.tex` = task 47 placeholder).
 - Report states `N=10^5` nodes for task 15 (matching the config); keep text and
-  config consistent.
+  config consistent. Part 3 uses `N=2*10^3` nodes per network (two layers) with
+  `f=0.01` and `2*10^6` grains after a 20% transient.
+- Part 3 (interconnected) tracks per-avalanche topplings split by network
+  (`ta`, `tb`) plus the origin network; "big" cascade = `ta > 0.5*N`. Figures
+  4-6 follow the Brummitt paper (primary axes linear in `p`; the Fig 4/5 insets
+  are log-log rank-size plots of the largest 10^4 events). Fig 4/5 insets are
+  INSIDE the main plot (top-right, via `ax.inset_axes`) in the empty band left
+  by expanding the y-axis (downward translation of the data); they show the
+  **per-run average** rank-size curve (mean over the `realizations` of each
+  run's sorted top-`top_k`), short y-labels (`T_a` / `t`), no title, lines kept
+  between points; `run_part3.py` stores `top_{ta,total}_mean_{j}/std_{j}`.
+  Main legends sit at 'upper left'. Left margins in `fig.add_axes` must be wide
+  enough for the long rotated y-labels (previously clipped). Fig 5 mean-field
+  reference is `s(t) ~ 0.5 t^{-3/2}`.
+  Fig 6 has no per-panel axis labels: shared `supxlabel('Interconnectivity p')`,
+  bold colored row labels "Small cascades" (blue) / "Large cascades" (red) on
+  the outside, and a single rotated "Probability" label inside the plot area.
 - `data/`, `input/`, `notebooks/` are git-ignored (gitignored paths still exist
   locally).
 - **Task 47** folders (`code/task_47/`, `config/task_47/`, `input/task_47/`,
@@ -88,11 +106,12 @@ hardcode values in scripts.
 
 ## State of development (task 15)
 
-- Simulations complete: `data/task_15/` contains part1 (gaussian/uniform) and
-  part2 (all gamma values) binned distributions.
-- Plots regenerated per the combined-1x2 convention (see Plot conventions).
+- Simulations complete: `data/task_15/` contains part1 (gaussian/uniform),
+  part2 (all gamma values) binned distributions, and part3 (interconnected
+  R(3)-B(p)-R(3)) summary npz (`part3_{fig4,fig5,fig6}.npz`).
+- Plots regenerated per the combined-1x2 convention (see Plot conventions);
+  part 3 figures `task_15_part3_fig{4,5,6}.pdf` reproduce Brummitt Figs 4-6
+  (P(big cascade) minimized at p*~0.075, global cascades grow with p, Fig 6
+  size-window trade-off).
 - Exponent fitting (`fit_exponents.py`) available; outputs `data/task_15/fits.csv`.
-- Report (`latex/sections/task1.tex`) includes both parts and the fits table.
-- TODO tracker: `projects_info/todo.md` (currently all items resolved).
-- Known follow-up (deferred): two-layer / interdependent networks
-  (Brummitt et al.), and MLE exponent fitting on raw (unbinned) avalanche sizes.
+- Report (`latex/sections/task1.tex`) includes all three parts and the fits table.

@@ -1,6 +1,6 @@
-PWD c:\Users\lcdit\Desktop\Uni\Magistrale\2_Semestre\Complex Networks\Projects\latex
+PWD C:\Users\lcdit\Desktop\Uni\Magistrale\2_Semestre\Complex Networks\Projects\latex
 INPUT C:\Users\lcdit\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\lcdit\Desktop\Uni\Magistrale\2_Semestre\Complex Networks\Projects\latex\main.tex
+INPUT main.tex
 OUTPUT main.log
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
@@ -460,14 +460,17 @@ OUTPUT main.toc
 INPUT .\main.lof
 INPUT .\main.lof
 INPUT main.lof
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri12.tfm
 OUTPUT main.lof
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
+INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
 INPUT .\sections\task1.tex
 INPUT .\sections\task1.tex
 INPUT sections\task1.tex
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr12.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
-INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri12.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr10.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr10.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr7.tfm
@@ -485,13 +488,10 @@ INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr7.tfm
-INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
-INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmr12.tfm
-INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
 INPUT .\figures\task_15\task_15_part1.pdf
 INPUT .\figures\task_15\task_15_part1.pdf
 INPUT .\figures\task_15\task_15_part1.pdf
@@ -507,6 +507,24 @@ INPUT .\figures\task_15\task_15_part2.pdf
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbxi10.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx10.tfm
 INPUT C:\Users\lcdit\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
+INPUT .\figures\task_15\task_15_part3_fig4.pdf
+INPUT .\figures\task_15\task_15_part3_fig4.pdf
+INPUT .\figures\task_15\task_15_part3_fig4.pdf
+INPUT .\figures\task_15\task_15_part3_fig4.pdf
+INPUT .\figures\task_15\task_15_part3_fig4.pdf
+INPUT .\figures\task_15\task_15_part3_fig4.pdf
+INPUT .\figures\task_15\task_15_part3_fig5.pdf
+INPUT .\figures\task_15\task_15_part3_fig5.pdf
+INPUT .\figures\task_15\task_15_part3_fig5.pdf
+INPUT .\figures\task_15\task_15_part3_fig5.pdf
+INPUT .\figures\task_15\task_15_part3_fig5.pdf
+INPUT .\figures\task_15\task_15_part3_fig5.pdf
+INPUT .\figures\task_15\task_15_part3_fig6.pdf
+INPUT .\figures\task_15\task_15_part3_fig6.pdf
+INPUT .\figures\task_15\task_15_part3_fig6.pdf
+INPUT .\figures\task_15\task_15_part3_fig6.pdf
+INPUT .\figures\task_15\task_15_part3_fig6.pdf
+INPUT .\figures\task_15\task_15_part3_fig6.pdf
 INPUT .\sections\task2.tex
 INPUT .\sections\task2.tex
 INPUT sections\task2.tex
