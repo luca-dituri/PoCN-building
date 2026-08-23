@@ -13,7 +13,7 @@ def plot_part1(data_dir, fig_dir):
     gauss = np.load(data_dir / "part1_gaussian.npz")
     unif = np.load(data_dir / "part1_uniform.npz")
 
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5.5))
+    fig, axes = plt.subplots(1, 2, figsize=(11.57, 4.92))
 
     # --- Avalanche size (left panel) ---
     ax = axes[0]
@@ -25,8 +25,8 @@ def plot_part1(data_dir, fig_dir):
     ys = 10 * y0 * (xs / xs[0])**(-1.5)
     ax.loglog(xs, ys, 'k--', label=r'BP Theory $\tau=1.5$')
 
-    ax.set_xlabel('Avalanche Size $s$')
-    ax.set_ylabel('Probability $P(s)$')
+    ax.set_xlabel('$s$')
+    ax.set_ylabel('$p(s)$')
     ax.set_title('Avalanche Size Distribution')
     ax.legend()
     ax.grid(True, which="both", ls="--", alpha=0.3)
@@ -41,18 +41,19 @@ def plot_part1(data_dir, fig_dir):
     ys = 10 * y0 * (xs / xs[0])**(-2.0)
     ax.loglog(xs, ys, 'k--', label=r'BP Theory $z=2.0$')
 
-    ax.set_xlabel('Lifetime $t$')
-    ax.set_ylabel('Probability $P(t)$')
+    ax.set_xlabel('$t$')
+    ax.set_ylabel('$l(t)$')
     ax.set_title('Avalanche Lifetime Distribution')
     ax.legend()
     ax.grid(True, which="both", ls="--", alpha=0.3)
 
     fig.tight_layout()
-    fig.savefig(fig_dir / "task_15_part1.pdf")
+    fig.savefig(fig_dir / "task_15_part1.pdf", bbox_inches='tight')
     plt.close(fig)
 
 
 def plot_part2(config, data_dir, fig_dir):
+    
     gammas = config['part2']['gammas']
     colors = plt.cm.viridis(np.linspace(0, 1, len(gammas)))
 
@@ -78,8 +79,8 @@ def plot_part2(config, data_dir, fig_dir):
     ys = 10 * y0 * (xs / xs[0])**(-1.5)
     ax.loglog(xs, ys, 'k--', label=r'BP Theory $\tau=1.5$', linewidth=2)
 
-    ax.set_xlabel('Avalanche Size $s$')
-    ax.set_ylabel('Probability $P(s)$')
+    ax.set_xlabel('$s$')
+    ax.set_ylabel('$p(s)$')
     ax.set_title('Avalanche Size Distribution ($\gamma$ Scale-Free)')
     ax.legend(loc='upper right', framealpha=0.9)
     ax.grid(True, which="both", ls="--", alpha=0.3)
@@ -97,8 +98,8 @@ def plot_part2(config, data_dir, fig_dir):
     ys = 10 * y0 * (xs / xs[0])**(-2.0)
     ax.loglog(xs, ys, 'k--', label=r'BP Theory $z=2.0$', linewidth=2)
 
-    ax.set_xlabel('Lifetime $t$')
-    ax.set_ylabel('Probability $P(t)$')
+    ax.set_xlabel('$t$')
+    ax.set_ylabel('$l(t)$')
     ax.set_title('Avalanche Lifetime Distribution ($\gamma$ Scale-Free)')
     ax.legend(loc='center left', bbox_to_anchor=(1.02, 0.5), frameon=False)
     ax.grid(True, which="both", ls="--", alpha=0.3)
@@ -128,7 +129,7 @@ def plot_fig4(data_dir, fig_dir):
     ax.axvline(0.075, ls='--', color='k', alpha=0.6, lw=1.2, label=r'$p^{*}\approx0.075$')
 
     ax.set_xlabel('$p$')
-    ax.set_ylabel(r'$P(T_a \geq 1000)$')
+    ax.set_ylabel(r'$p(T_a \geq 1000)$')
     ax.grid(True, which="both", ls="--", alpha=0.3)
     ax.legend(loc='upper left', framealpha=0.9)
 
@@ -175,10 +176,10 @@ def plot_fig5(data_dir, fig_dir):
     # raised by a factor 2 so the dashed line sits above the plotted data.
     xs = np.logspace(0, np.log10(max_x), 100)
     ys = 1.0 * xs ** (-1.5)
-    ax.loglog(xs, ys, '--', color='g', lw=1.5, label=r'$s(t)\sim t^{-3/2}$')
+    ax.loglog(xs, ys, '--', color='g', lw=1.5, label=r'$p(s)\sim s^{-3/2}$')
 
-    ax.set_xlabel('$t$')
-    ax.set_ylabel('$s(t)$')
+    ax.set_xlabel('$s$')
+    ax.set_ylabel('$p(s)$')
     ax.grid(True, which="both", ls="--", alpha=0.3)
     ax.legend(loc='upper left', framealpha=0.9)
 
@@ -196,7 +197,7 @@ def plot_fig5(data_dir, fig_dir):
         axin.loglog(ranks, mean, 'o-', markersize=2.5, linewidth=1.0,
                     color=colors[j])
     axin.set_xlabel('Rank', fontsize=LEGEND_SIZE)
-    axin.set_ylabel(r'$t$', fontsize=LEGEND_SIZE)
+    axin.set_ylabel(r'$s$', fontsize=LEGEND_SIZE)
     axin.grid(True, which="both", ls="--", alpha=0.3)
 
     fig.savefig(fig_dir / "task_15_part3_fig5.pdf")
@@ -223,7 +224,7 @@ def plot_fig6(data_dir, fig_dir):
              fontsize=16, fontweight='bold', color='#1f77b4')
     fig.text(0.05, 0.28, 'Large cascades', rotation=90, va='center',
              fontsize=16, fontweight='bold', color='#d62728')
-    fig.text(0.012, 0.5, r'$P(T_a \in I)$', rotation=90, va='center', fontsize=15)
+    fig.text(0.012, 0.5, r'$p(T_a \in I)$', rotation=90, va='center', fontsize=15)
 
     fig.tight_layout()
     fig.subplots_adjust(left=0.17)
@@ -244,11 +245,9 @@ def main():
     print("Plotting Part 2...")
     plot_part2(config, data_dir, fig_dir)
 
-    print("Plotting Part 3 (Fig 4)...")
+    print("Plotting Part 3...")
     plot_fig4(data_dir, fig_dir)
-    print("Plotting Part 3 (Fig 5)...")
     plot_fig5(data_dir, fig_dir)
-    print("Plotting Part 3 (Fig 6)...")
     plot_fig6(data_dir, fig_dir)
 
     print("Done! Plots saved in latex/figures/task_15/")

@@ -31,3 +31,10 @@ __pycache__/
 
 # Generated PDF-to-Markdown caches
 *.pdf.md
+
+/projects_info/
+AGENTS.md
+GOAL.md
+PROGRESS.md
+TASK_47.md
+VERIFY.md

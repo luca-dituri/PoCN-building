@@ -1,0 +1,40 @@
+# Configuration for Task 47 (Data): spatial covariance & Landau-Ginzburg
+
+networks:
+  europe:
+    vertices: "gridkit_europe-highvoltage-vertices.csv"
+    links: "gridkit_europe-highvoltage-links.csv"
+    label: "Europe"
+  north_america:
+    vertices: "gridkit_north_america-highvoltage-vertices.csv"
+    links: "gridkit_north_america-highvoltage-links.csv"
+    label: "North America"
+
+kernel:
+  n_bins: 20                 # radial distance bins for the homogeneous kernel
+  bin_method: "log"          # "log" (geomspace), "quantile" (balanced pairs) or "linear"
+  r_log_floor: 0.2           # km; lower edge of the smallest log bin
+  n_sample_pairs: 1000000    # sampled pairs used to build bin edges
+  min_pairs_per_bin: 1000    # bins with fewer pairs are dropped from the likelihood
+  regime: "sparse"           # p_ij = (lambda / N) * shape  convention
+  models: ["exponential", "gaussian", "powerlaw_cutoff", "stretched_exponential", "exp_power"]
+  residual_exclude: ["gaussian", "exponential"]  # pure exponential-decay kernels omitted from the residual panel (off-scale tail)
+
+landau_ginzburg:
+  kappa: 1.0                  # stiffness (fixed; r0 inferred, xi = sqrt(kappa/r0))
+  temperature: 1.0            # sampling temperature in G = T Q^{-1}
+  u: 0.0                      # quartic coupling (Gaussian baseline; quartic treated approx.)
+  density_radius: 100.0       # km; local-density radius for the non-homogeneous split
+  m_kind: "density_anomaly"   # non-homogeneous mass profile m(x)
+  quadratic:                  # explicit operator Q = (kappa/h^2) L + r0(1+eps m)
+    h_grid: 15.0              # target lattice spacing (km); grid side derived per network (h <= h_grid)
+    n_src: 64                 # sampled interior source columns for the homogeneous + perturbative covariance
+    source_margin_frac: 0.05  # fraction of the grid side excluded from each edge when drawing source sites
+    fit_eps: true             # fit the non-homogeneous coupling eps
+    r_min_factor: 1.0         # fit only r >= r_min_factor * h (UV regularization; h below dense scale)
+    fit_amp0: 1.0e-6          # initial guess for covariance amplitude A
+    fit_r00: 1.0e-3           # initial guess for the mass r0
+    eps_bounds: [-1.5, 1.5]   # bounds on the non-homogeneous coupling eps (first-order valid)
+
+comparison:
+  metrics: ["mse", "mse_log", "r2"]

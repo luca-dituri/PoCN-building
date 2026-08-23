@@ -35,9 +35,9 @@ def main():
     
     print(f"Running Part 2 with {num_realizations} realizations per gamma...")
     
-    for gamma in gammas:
+    for gi, gamma in enumerate(gammas):
         print(f"Processing Gamma = {gamma}...")
-        args = [(base_seed + 1000*int(gamma) + i, gamma, config) for i in range(num_realizations)]
+        args = [(base_seed + 1000*gi + i, gamma, config) for i in range(num_realizations)]
         
         with Pool() as pool:
             t0 = time.time()
